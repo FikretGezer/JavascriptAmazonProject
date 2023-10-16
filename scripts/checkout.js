@@ -1,7 +1,6 @@
 import {cart, removeFromCart} from '../data/cart.js';
 import {products} from '../data/products.js';
 
-
 let cartSummaryHTML = '';
 createCheckout();
 function createCheckout()

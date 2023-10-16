@@ -57,7 +57,7 @@ products.forEach((product) => {
 
 function updateCartQuantity()
 {
-  let total = 0;
+  total = 0;
         cart.forEach((cartItem) => {
             total += cartItem.quantity;
         });
