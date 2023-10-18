@@ -1,6 +1,10 @@
 import {cart, addToCart} from '../data/cart.js';
 import {products} from '../data/products.js';
 
+let total = localStorage.getItem('totalItems') || 0;
+const cartQ = document.querySelector('.cart-quantity');
+cartQ.innerHTML = `${total}`;
+
 const productsGridDiv = document.querySelector('.products-grid');
 products.forEach((product) => {
     productsGridDiv.innerHTML += `<div class="product-container">
@@ -49,27 +53,30 @@ products.forEach((product) => {
 
     <button class="add-to-cart-button button-primary js-add-to-cart"
     data-product-id="${product.id}">
-      Add to Cart
+    Add to Cart
     </button>
-  </div>`;
-});
-
-
-function updateCartQuantity()
+    </div>`;
+  });
+  
+// function saveQuantity()
+// {  
+//   localStorage.setItem('totalItems', JSON.stringify(total));
+// }
+function calculateCartQuantity()
 {
   total = 0;
-        cart.forEach((cartItem) => {
-            total += cartItem.quantity;
-        });
-        cartQ.innerHTML = `${total}`;
+  cart.forEach((cartItem) => {
+      total += cartItem.quantity;
+  });        
+  
 }
-const cartQ = document.querySelector('.cart-quantity');
 document.querySelectorAll('.js-add-to-cart').forEach((button) => {
     button.addEventListener('click', () => {     
         const productId = button.dataset.productId;        
         addToCart(productId);
-        updateCartQuantity();
-        
+        calculateCartQuantity();
+        cartQ.innerHTML = total;
+        localStorage.setItem('totalItems', JSON.stringify(total));
     });
 });
 

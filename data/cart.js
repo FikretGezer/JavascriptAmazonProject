@@ -42,7 +42,7 @@ export function removeFromCart(productId)
     cart = newCart;
     saveToStorage();
 }
-function saveToStorage()
+export function saveToStorage()
 {
     localStorage.setItem('cart',JSON.stringify(cart));
 }
